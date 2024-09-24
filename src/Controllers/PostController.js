@@ -1,6 +1,9 @@
-export const PostController = (req, res) => {
-    res.send({ message: 'Hello from post' });
-}
+import dbConnection from "../Configuration/db.js";
+
+export const PostController = async (req, res) => {
+    const post = await dbConnection();
+    console.log(post);
+    return res.send({ message: 'Hello from post',postData: post })}
 
 export const GitData = async(req,res) => {
     try{
@@ -12,4 +15,3 @@ export const GitData = async(req,res) => {
         res.status(400).json({message: error.message});
     }
 }
-
